@@ -3,7 +3,6 @@ import api from './api.js';
 const pokemon = {
   init() {
     pokemon.load();
-    pokemon.handleModal()
   },
 
   async load() {
@@ -25,21 +24,14 @@ const pokemon = {
     const clone = template.content.cloneNode(true);
     clone.querySelector('[slot="pokemon-name"]').textContent = pokemon.name;
     clone.querySelector(".pkm_img").src = "images/" + pokemon.id + ".webp";
-    clone.handleModal();
+    clone.querySelector('.card').addEventListener('click', () => this.handleModal());
 
     document.getElementById("app").append(clone);
   },
 
   handleModal() {
     const pkmDetail = document.getElementById("pkm_detail"); // modal
-    const pkmCard = document.querySelectorAll('.card'); // all pkm card
-
-    pkmCard.forEach((card) => {
-      card.addEventListener("click", () => {
-        pkmDetail.classList.add("is-active");
-      });
-    });
-
+    pkmDetail.classList.add("is-active");
   }
 };
 
