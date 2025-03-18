@@ -32,6 +32,11 @@ const pokemon = {
   handleModal() {
     const pkmDetail = document.getElementById("pkm_detail"); // modal
     pkmDetail.classList.add("is-active");
+
+    const close = document.querySelectorAll(".close");
+    close.forEach(modal => {
+      modal.addEventListener('click', () => pkmDetail.classList.remove("is-active"));
+    });
   }
 };
 
