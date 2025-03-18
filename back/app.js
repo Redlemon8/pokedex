@@ -7,9 +7,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors({
-    origin: ["http://127.0.0.1:5500", "http://localhost:5500"]
-}));
+app.use(cors());
 
 app.use(router);
 
