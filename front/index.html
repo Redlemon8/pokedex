@@ -42,7 +42,7 @@
       class="container is-flex is-align-item-center is-flex-wrap-wrap is-justify-content-space-evenly my-6">
     </main>
       <template class="template-pokemon">  
-        <div class="card mb-6 has-text-centered pt-4 my-6">
+        <div slot="pokemon-id" class="card mb-6 has-text-centered pt-4 my-6">
             <div class="card-image">
               <img class="pkm_img" src="/images/1.webp" />
             </div>
@@ -75,7 +75,7 @@
                     <div class="pokemon-hp ml-1"></div>
                   </div>
                   <progress
-                    class="progress is-danger"
+                    class="hp progress is-danger"
                     value="50"
                     max="255"
                   ></progress>
@@ -86,7 +86,7 @@
                     <div class="pokemon-atk ml-1"></div>
                   </div>
                   <progress
-                    class="progress is-danger"
+                    class="atk progress is-danger"
                     value="70"
                     max="255"
                   ></progress>
@@ -97,7 +97,7 @@
                     <div class="pokemon-def ml-1"></div>
                   </div>
                   <progress
-                    class="progress is-danger"
+                    class="def progress is-danger"
                     value="90"
                     max="255"
                   ></progress>
@@ -108,7 +108,7 @@
                     <div class="pokemon-atk_spe ml-1"></div>
                   </div>
                   <progress
-                    class="progress is-danger"
+                    class="atk_spe progress is-danger"
                     value="110"
                     max="255"
                   ></progress>
@@ -119,7 +119,7 @@
                     <div class="pokemon-def_spe ml-1"></div>
                   </div>
                   <progress
-                    class="progress is-danger"
+                    class="def_spe progress is-danger"
                     value="130"
                     max="255"
                   ></progress>
@@ -130,7 +130,7 @@
                     <div class="pokemon-speed ml-1"></div>
                   </div>
                   <progress
-                    class="progress is-danger"
+                    class="speed progress is-danger"
                     value="150"
                     max="255"
                   ></progress>

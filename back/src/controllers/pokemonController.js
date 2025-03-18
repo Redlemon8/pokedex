@@ -7,6 +7,19 @@ const pokemonController = {
             include: ["types", "teams"],
         }));
     },
+
+    async showOne(req, res) {
+
+        const pokemonId = req.params.id;
+
+        const result = await Pokemon.findByPk(pokemonId);
+
+        if (!result) {
+            return next();
+        }
+
+        res.status(200).json(result);
+    }
 }
 
 export { pokemonController };
