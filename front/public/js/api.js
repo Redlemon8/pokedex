@@ -1,7 +1,7 @@
 const api = {
     baseUrl: "http://localhost:3000",
 
-    async getPokemons(pokemonId) {
+    async getPokemons() {
         try {
             const response = await fetch(api.baseUrl + "/pokemons");
 
@@ -19,7 +19,6 @@ const api = {
 
     async getOnePokemon(pokemonId) {
         try {
-            console.log("pokemonId from getOnePokemon" + pokemonId);
             const response = await fetch(api.baseUrl + "/pokemons/" + pokemonId);
 
             if (!response.ok) {
@@ -29,6 +28,22 @@ const api = {
 
             return await response.json();
 
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
+    },
+
+    async getTypes() {
+        try {
+            const response = await fetch(api.baseUrl + "/types");
+
+            if (!response.ok) {
+                console.error(response);
+                return null;
+            }
+
+            return await response.json();
         } catch (error) {
             console.error(error);
             return null;
