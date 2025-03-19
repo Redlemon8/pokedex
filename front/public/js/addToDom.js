@@ -1,5 +1,6 @@
 import pokemon from './pokemon.js';
 import type from './type.js';
+import modals from './modal.js';
 
 const addToDom = {
 
@@ -17,7 +18,7 @@ const addToDom = {
     document.getElementById("app").append(clone);
 
 
-    card.addEventListener('click', () => pokemon.handleModal(pokemons.id));
+    card.addEventListener('click', () => modals.handleModal(pokemons.id));
 
   },
 
