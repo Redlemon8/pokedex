@@ -8,6 +8,7 @@ router.get("/pokemons", pokemonController.index);
 router.get("/pokemons/:id(\\d+)", pokemonController.showOne);
 
 router.get("/types", typeController.index);
+router.get("/types/:id(\\d+)", typeController.showPokemonByType);
 
 
 export { router };

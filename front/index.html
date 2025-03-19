@@ -53,8 +53,28 @@
       </template>
 
       <template class="template-type">
-        <div class="is-flex is-justify-content-center my-6">
-          <button class="button is-flex-grow-1 mx-2" style="background-color: #ff4422;">Feu</button>
+        <div class="block-type column has-text-black">
+          <div class="is-flex is-justify-content-center my-6">
+            <button class="button is-flex-grow-1 mx-2 is-one-fifth" style="background-color: #ff4422;">Feu</button>
+          </div>
+        </div>
+      </template>
+
+      <template class="pokemon-by-type">
+        <div class="pokemon-card-type my-6">
+          <div class="is-flex is-justify-content-center">
+            <div class="card mb-6 has-text-centered pt-4 mx-2">
+                <div class="card-image is-flex is-justify-content-center">
+                  <img class="pkm_img" src="./assets/img/1.webp">
+                </div>
+                <div class="card-content">
+                  <p slot="pokemon-name">Bulbizarre</p>
+                </div>
+            </div>
+          </div>
+          <div class="is-flex is-justify-content-center">
+            <button class="button is-primary">Action</button>
+          </div>
         </div>
       </template>
 
