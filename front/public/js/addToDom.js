@@ -1,4 +1,3 @@
-import pokemon from './pokemon.js';
 import type from './type.js';
 import modals from './modal.js';
 
@@ -14,7 +13,6 @@ const addToDom = {
 
     const card = clone.querySelector('.card');
     card.dataset.pokemons = pokemons.id;
-    console.log(pokemons.id);
     document.getElementById("app").append(clone);
 
 
@@ -47,7 +45,10 @@ const addToDom = {
     clone.querySelector('[slot="pokemon-name"]').textContent = pokemonId.name;
     clone.querySelector(".pkm_img").src = "images/" + pokemonId.id + ".webp";
     
+    const card = clone.querySelector('.card');
+    card.dataset.pokemonId = pokemonId.id;
       document.getElementById("app").append(clone);
+      card.addEventListener('click', () => modals.handleModal(pokemonId.id));
   },
 }
 

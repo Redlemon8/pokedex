@@ -58,7 +58,7 @@ const api = {
           console.error(response);
           return null;
       }
-
+      
       return await response.json();
 
     } catch (error) {
