@@ -22,3 +22,9 @@ abbr{
 .hidden {
     display: none;
 }
+.block-type {
+    width: 33%;
+}
+#app {
+    height: 500px;
+}

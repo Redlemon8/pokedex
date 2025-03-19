@@ -1,12 +1,19 @@
+import addToDom from './addToDom.js';
 import api from './api.js';
 
 const pokemon = {
   init() {
     pokemon.load();
+    pokemon.bind();
+  },
+
+  bind() {
+    document.getElementById("nav-item-home").addEventListener("click", () => this.load());
   },
 
   async load() {
-
+    document.getElementById('app').innerHTML = '';
+    // Get pokemons data from api.js 
     const pokemons = await api.getPokemons();
 
     if (pokemons === null) {
@@ -14,23 +21,11 @@ const pokemon = {
         return;
     }
 
-    pokemons.forEach(loadPokemon => pokemon.addToDOM(loadPokemon));
+    // Send pokemon data to the next function
+    pokemons.forEach(loadPokemon => addToDom.displayPokemons(loadPokemon));
+
   },
 
-  addToDOM(pokemon) {
-      
-    const template = document.querySelector('.template-pokemon');
-    const clone = template.content.cloneNode(true);
-    clone.querySelector('[slot="pokemon-name"]').textContent = pokemon.name;
-    clone.querySelector(".pkm_img").src = "images/" + pokemon.id + ".webp";
-
-    const card = clone.querySelector('.card');
-    card.dataset.pokemonId = pokemon.id;
-
-    card.addEventListener('click', () => this.handleModal(pokemon.id));
-
-    document.getElementById("app").append(clone);
-  },
 
   handleModal(pokemonId) {
     const pkmDetail = document.getElementById("pkm_detail");
