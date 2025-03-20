@@ -15,6 +15,7 @@ const modals = {
   async displayPokemonDetails(pokemonId) {
 
     const pokemon = await api.getOnePokemon(pokemonId);
+    console.log(pokemon);
 
     if (!pokemon) {
       alert("Impossible de charger le pokemon !");
@@ -113,6 +114,25 @@ const modals = {
     });
 
   },
+
+  creatTeamModal(event) {
+    event.preventDefault();
+    const addTeam = document.getElementById("add_team_modal");
+    addTeam.classList.add("is-active");
+    console.log('click');
+    
+    // modals.displayPokemonDetails();
+
+    const close = document.querySelectorAll(".close");
+    close.forEach(modal => {
+      modal.addEventListener('click', () => addTeam.classList.remove("is-active"));
+    });
+
+    console.log('je suis la modal');
+
+    document.getElementById('form_team_modal').addEventListener('submit', () => team.creatTeam(data))
+
+  }
 };
 
 export default modals;

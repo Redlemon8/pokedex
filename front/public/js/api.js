@@ -99,6 +99,28 @@ const api = {
       return null;
     }
   },
+
+  async createTeam(data) {
+    try {
+        const response = await fetch(api.baseUrl + '/teams', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+
+            console.error(response);
+            return null;
+        }
+
+        return await response.json();
+
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+  },
 };
 
 export default api;

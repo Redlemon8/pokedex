@@ -46,17 +46,23 @@ const addToDom = {
     const imgContainer = clone.querySelector('.imgContainer');
     imgContainer.innerHTML = '';
 
+    // Create figure element
     const figure = document.createElement('figure');
     figure.classList.add('image', 'is-flex', 'is-justify-content-center');
 
+    // Loop to create each pokemon img  
     teams.pokemons.forEach(pokemon => {
       const img = document.createElement('img');
       img.classList.add('pokemon-team-image', 'is-rounded', 'mx-2', 'is-16x16');
+      // get the properly img by id
       img.src = "./images/" + pokemon.id + ".webp";
-
+      // open modal to each pokemon by img click
+      img.addEventListener('click', () => modals.handleModal(pokemon.id));
+      // Add img to each team figure
       figure.append(img);
     });
 
+    // display each figure to the img container
     imgContainer.append(figure);
 
     const btnModalTeam = clone.querySelector('.btnModalTeam');
@@ -66,7 +72,7 @@ const addToDom = {
 
 
     btnModalTeam.addEventListener('click', () => modals.handleTeamModal(teams.id));
-  }
+  },
 }
 
 export default addToDom;
