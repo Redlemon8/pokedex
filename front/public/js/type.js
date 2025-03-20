@@ -38,7 +38,7 @@ const type = {
     const pokemons = pokemonsByType.pokemons;
 
     // Loop to display pokemons after type selection, jump on addToDom.js
-    pokemons.forEach(pokemon => addToDom.displaypokemonsByType(pokemon));
+    pokemons.forEach(pokemon => addToDom.displayPokemons(pokemon));
 
   },
 

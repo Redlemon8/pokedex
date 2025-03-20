@@ -37,19 +37,36 @@ const addToDom = {
     
   },
 
-  displaypokemonsByType(pokemonId) {
-
-    // Display pokemons by type
-    const template = document.querySelector('.pokemon-by-type');
+  displayTeams(teams) {
+    const template = document.querySelector('.template-team');
     const clone = template.content.cloneNode(true);
-    clone.querySelector('[slot="pokemon-name"]').textContent = pokemonId.name;
-    clone.querySelector(".pkm_img").src = "images/" + pokemonId.id + ".webp";
-    
-    const card = clone.querySelector('.card');
-    card.dataset.pokemonId = pokemonId.id;
-      document.getElementById("app").append(clone);
-      card.addEventListener('click', () => modals.handleModal(pokemonId.id));
-  },
+    clone.querySelector('.team-name').textContent = teams.name;
+    clone.querySelector('.team-description').textContent = teams.description;
+
+    const imgContainer = clone.querySelector('.imgContainer');
+    imgContainer.innerHTML = '';
+
+    const figure = document.createElement('figure');
+    figure.classList.add('image', 'is-flex', 'is-justify-content-center');
+
+    teams.pokemons.forEach(pokemon => {
+      const img = document.createElement('img');
+      img.classList.add('pokemon-team-image', 'is-rounded', 'mx-2', 'is-16x16');
+      img.src = "./images/" + pokemon.id + ".webp";
+
+      figure.append(img);
+    });
+
+    imgContainer.append(figure);
+
+    const btnModalTeam = clone.querySelector('.btnModalTeam');
+    btnModalTeam.dataset.teams = teams.id;
+
+    document.getElementById("app").append(clone);
+
+
+    btnModalTeam.addEventListener('click', () => modals.handleTeamModal(teams.id));
+  }
 }
 
 export default addToDom;

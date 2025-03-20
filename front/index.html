@@ -41,6 +41,8 @@
       id="app"
       class="container is-flex is-align-item-center is-flex-wrap-wrap is-justify-content-space-evenly my-6">
     </main>
+
+    <!-- Template pokemons -->
       <template class="template-pokemon">  
         <div slot="pokemon-id" class="card mb-6 has-text-centered pt-4 my-6">
             <div class="card-image">
@@ -52,6 +54,7 @@
         </div>
       </template>
 
+      <!-- Template types -->
       <template class="template-type">
         <div class="block-type column has-text-black">
           <div class="is-flex is-justify-content-center my-6">
@@ -60,6 +63,7 @@
         </div>
       </template>
 
+      <!-- Template pokemon type -->
       <template class="pokemon-by-type">
         <div class="pokemon-card-type my-6">
           <div class="is-flex is-justify-content-center">
@@ -77,32 +81,31 @@
           </div>
         </div>
       </template>
-      <template>
-        <section class="container has-text-centered my-6">
-          <div class="mb-1">
-            <h2 class="team-name title">My Great Team</h2>
-            <p class="team-description subtitle my-5">Description of My Great Team</p>
-          </div>
+
+      <!-- Template teams -->
+        <template class="template-team container has-text-centered my-6">
+          <div class="columns is-multiline my-6">
+            <div class="column is-full">
+              <div class="mb-1 has-text-centered"> <h2 class="team-name title">My Great Team</h2>
+                <p class="team-description subtitle my-5">Description of My Great Team</p>
+              </div>
+            </div>
         
-          <div class="imgContainer image is-flex is-justify-content-center my-5">
-            <figure class="image is-64x64 mx-2">
-              <img src="./assets/img/1.webp" class="is-rounded">
-            </figure>
-            <figure class="image is-64x64 mx-2">
-              <img src="./assets/img/2.webp" class="is-rounded">
-            </figure>
-            <figure class="image is-64x64 mx-2">
-              <img src="./assets/img/3.webp" class="is-rounded">
-            </figure>
-            <figure class="image is-64x64 mx-2">
-              <img src="./assets/img/4.webp" class="is-rounded">
-            </figure>
+            <div class="column is-full">
+              <div class="imgContainer image is-flex is-justify-content-center my-5">
+                <figure class="image is-64x64 mx-2">
+                  <img src="./assets/img/1.webp" class="pokemon-team-image is-rounded">
+                </figure>
+              </div>
+            </div>
+        
+            <div class="column is-full">
+              <div class="container btnContainer has-text-centered"> 
+                <button class="button btnModalTeam is-primary">Administrer</button>
+              </div>
+            </div>
           </div>
-          <div class="container btnContainer">
-            <button class="button btnModalTeam">Administrer</button>
-          </div>
-        </section>
-      </template>
+        </template>
 
       <!-- MODAL -->
         <div class="modal" id="pkm_detail">
@@ -204,6 +207,61 @@
                 <button class="button close">Retour</button>
               </div>
           </footer>
+        </div>
+      </div>
+      
+        <div class="modal" id="team_modal">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <header class="modal-card-head">
+              <h2 class="modal-card-title team_name"></h2>
+              <form class="hidden">
+                <input type="text" name="team_name" class="modal-card-title input_team_name mr-3">
+              </form>
+              <i class="fa fa-pencil edit mr-3"></i>
+              <i class="fa fa-window-close close"></i>
+            </header>
+            <div class="modal-card-body">
+              <p class="team_description"></p>
+              <table class="table has-text-centered">
+                <thead>
+                  <tr>
+                    <th><abbr title="numero">N°</abbr></th>
+                    <th><abbr title="name">Name</abbr></th>
+                    <th><abbr title="hp">PV</abbr></th>
+                    <th><abbr title="atk">Atk</abbr></th>
+                    <th><abbr title="def">Def</abbr></th>
+                    <th><abbr title="atk_spe">Atk Spe</abbr></th>
+                    <th><abbr title="def_spe">Def Spe</abbr></th>
+                    <th><abbr title="speed">Vit</abbr></th>
+                    <th><abbr title="types">Types</abbr></th>
+                    <th><abbr title="options">Options</abbr></th>
+                  </tr>
+                </thead>
+                <tbody id="tbody_team">
+                  <!-- Partie dynamique créer en JS -->
+                  <!-- <tr class="team-pokemon-field">
+                    <td>1</td>
+                    <td>Builbizarre</td>
+                    <td>100</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td><i class="fa fa-trash"></i></td>
+                  </tr> -->
+
+                </tbody>
+              </table>
+            </div>
+            <footer class="modal-card-foot">
+              <div class="buttons">
+                <button class="button close">Retour</button>
+              </div>
+            </footer>
+          </div>
         </div>
       </div>
       <script src="/js/app.js" type="module"></script>

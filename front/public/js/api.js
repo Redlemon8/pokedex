@@ -58,14 +58,47 @@ const api = {
           console.error(response);
           return null;
       }
-      
+
       return await response.json();
 
     } catch (error) {
       console.error(error);
       return null;
     }
-  }
+  },
+
+  async getTeams() {
+    try {
+      const response = await fetch(api.baseUrl + "/teams");
+
+      if (!response.ok) {
+          console.error(response);
+          return null;
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  },
+
+  async getOneTeam(teamId) {
+    try {
+      const response = await fetch(api.baseUrl + "/teams/" + teamId);
+      
+      if (!response.ok) {
+          console.error(response);
+          return null;
+      }
+
+      return await response.json();
+
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  },
 };
 
 export default api;
