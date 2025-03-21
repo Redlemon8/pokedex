@@ -120,7 +120,6 @@ const modals = {
 
     const addTeam = document.getElementById("add_team_modal");
     addTeam.classList.add("is-active");
-    console.log('click');
 
     const close = document.querySelectorAll(".close");
     close.forEach(modal => {

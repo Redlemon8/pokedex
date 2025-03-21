@@ -9,8 +9,7 @@ const team = {
 
   bind() {
     document.getElementById("nav-item-team").addEventListener("click", () => this.load());
-    // document.getElementById("nav-item-add-team").addEventListener("click", () => this.creatTeam());
-    document.getElementById("open_add_team_modal").addEventListener("click", (event) => modals.creatTeamModal());
+    document.getElementById("nav-item-add-team").addEventListener("click", (event) => modals.creatTeamModal());
   },
 
   async load() {
