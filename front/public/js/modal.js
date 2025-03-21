@@ -1,4 +1,5 @@
 import api from './api.js';
+import team from './team.js';
 
 const modals = {
   handleModal(pokemonId) {
@@ -115,22 +116,23 @@ const modals = {
 
   },
 
-  creatTeamModal(event) {
-    event.preventDefault();
+  creatTeamModal() {
+
     const addTeam = document.getElementById("add_team_modal");
     addTeam.classList.add("is-active");
     console.log('click');
-    
-    // modals.displayPokemonDetails();
 
     const close = document.querySelectorAll(".close");
     close.forEach(modal => {
       modal.addEventListener('click', () => addTeam.classList.remove("is-active"));
     });
 
-    console.log('je suis la modal');
-
-    document.getElementById('form_team_modal').addEventListener('submit', () => team.creatTeam(data))
+    const form = document.getElementById('form_team_modal');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      team.creatTeam(data);
+    });
 
   }
 };

@@ -29,27 +29,20 @@ const team = {
   },
 
   async creatTeam(data) {
-
-    // const form = document.getElementById("form_team_modal")
-    // document.getElementById('app').innerHTML = '';
-
-    console.log('je suis dans .team.creatTeam');
-
-        data = Object.fromEntries(new FormData(form));
-
-        console.log(data);
+        console.log("Données reçu par la modal : ", data);
 
         const createTeam = await api.createTeam(data);
 
-        if (createdList === null) {
-            alert("Impossible de créer la liste !");
+        if (createTeam === null) {
+            alert("Impossible de créer l'équipe !");
             return;
         }
+        console.log("Réponse de l'API :", createTeam);
 
-        createTeam.addToDom.displayTeams(team);
-
+        addToDom.displayTeams(createTeam);
+        const form = document.getElementById('form_team_modal')
         form.reset();
-
+        document.getElementById('add_team_modal').remove();
   }
 };
 
