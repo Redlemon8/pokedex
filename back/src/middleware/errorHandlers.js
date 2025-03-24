@@ -1,5 +1,5 @@
 const notFound = (req, res, next) => {
-    const error = new Error("Not Found");
+    const error = new Error("Data Not Found");
     error.statusCode = 404;
     next(error);
 };
