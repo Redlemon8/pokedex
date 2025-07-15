@@ -14,6 +14,14 @@ const team = {
 
   async load() {
     document.getElementById('app').innerHTML = '';
+    
+    // Appliquer le background spécifique pour la page des équipes
+    const appBackground = document.querySelector('.app-background');
+    if (appBackground) {
+      appBackground.classList.add('teams-page-background');
+      appBackground.classList.remove('home-page-background', 'types-page-background');
+    }
+    
     // Get pokemons data from api.js 
     const teams = await api.getTeams();
 
@@ -23,7 +31,9 @@ const team = {
     }
 
     // Send pokemon data to the next function
-    teams.forEach(loadTeam => addToDom.displayTeams(loadTeam));
+    for (const team of teams) {
+      await addToDom.displayTeams(team);
+    }
 
   },
 
@@ -38,10 +48,24 @@ const team = {
         }
         console.log("Réponse de l'API :", createTeam);
 
-        addToDom.displayTeams(createTeam);
+        await addToDom.displayTeams(createTeam);
         const form = document.getElementById('form_team_modal')
         form.reset();
         document.getElementById('add_team_modal').remove();
+  },
+
+  async editTeam(teamId, data) {
+    console.log("Données reçues pour modification : ", data);
+
+    const editTeam = await api.editTeam(teamId, data);
+
+    if (editTeam === null) {
+        alert("Impossible de modifier l'équipe !");
+        return false;
+    }
+    console.log("Réponse de l'API :", editTeam);
+
+    return true;
   }
 };
 

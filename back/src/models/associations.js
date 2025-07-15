@@ -6,7 +6,7 @@ import { Type } from './Type.js';
 Pokemon.belongsToMany(Team, {
     as: "teams",
     through: "team_pokemon",
-    foreignKey: "pokemon_team_id",
+    foreignKey: "pokemon_id",
     otherKey: "team_id"
 });
 
@@ -14,20 +14,20 @@ Team.belongsToMany(Pokemon, {
     as: "pokemons",
     through: "team_pokemon",
     foreignKey: "team_id",
-    otherKey: "pokemon_team_id"
+    otherKey: "pokemon_id"
 });
 
 Type.belongsToMany(Pokemon, {
     as: "pokemons",
     through: "pokemon_type",
     foreignKey: "type_id",
-    otherKey: "pokemon_type_id"
+    otherKey: "pokemon_id"
 });
 
 Pokemon.belongsToMany(Type, {
     as: "types",
     through: "pokemon_type",
-    foreignKey: "pokemon_type_id",
+    foreignKey: "pokemon_id",
     otherKey: "type_id"
 });
 

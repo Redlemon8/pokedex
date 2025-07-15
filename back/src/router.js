@@ -17,4 +17,7 @@ router.post("/teams", teamController.creatTeam);
 router.patch("/teams/:id(\\d+)", teamController.editTeam);
 router.delete("/teams/:id(\\d+)", teamController.deleteTeam);
 
+router.post("/teams/:id(\\d+)/pokemons", teamController.addPokemonToTeam);
+router.delete("/teams/:id(\\d+)/pokemons", teamController.removePokemonFromTeam);
+
 export { router };

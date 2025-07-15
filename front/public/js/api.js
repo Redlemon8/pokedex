@@ -17,6 +17,11 @@ const api = {
     }
   },
 
+  // Alias pour getAllPokemons
+  async getAllPokemons() {
+    return await this.getPokemons();
+  },
+
   async getOnePokemon(pokemonId) {
     try {
       const response = await fetch(api.baseUrl + "/pokemons/" + pokemonId);
@@ -102,25 +107,89 @@ const api = {
 
   async createTeam(data) {
     try {
-        const response = await fetch(api.baseUrl + '/teams', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-        });
+      const response = await fetch(api.baseUrl + '/teams', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-        if (!response.ok) {
+      if (!response.ok) {
 
-            console.error(response);
-            return null;
-        }
+        console.error(response);
+        return null;
+      }
 
-        return await response.json();
+      return await response.json();
 
     } catch (error) {
         console.error(error);
         return null;
     }
   },
+
+  async addPokemonToTeam(teamId, pokemonId) {
+    try {
+      console.log('function add pokemon to team', teamId, pokemonId);
+      const response = await fetch(api.baseUrl + '/teams/' + teamId + "/pokemons", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pokemonId: pokemonId }),
+      });
+
+      if (!response.ok) {
+
+        console.error(response);
+        return null;
+      }
+
+      return await response.json();
+
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+  },
+
+  async removePokemonFromTeam(teamId, pokemonId) {
+    try {
+      const response = await fetch(api.baseUrl + '/teams/' + teamId + "/pokemons", {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pokemonId: pokemonId }),
+      });
+
+      if (!response.ok) {
+        console.error(response);
+        return null;
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  },
+
+  async editTeam(teamId, data) {
+    try {
+      const response = await fetch(api.baseUrl + '/teams/' + teamId, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        console.error(response);
+        return null;
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
 };
+
 
 export default api;

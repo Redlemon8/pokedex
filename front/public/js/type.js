@@ -13,6 +13,14 @@ const type = {
 
   async loadType() {
     document.getElementById('app').innerHTML = '';
+    
+    // Appliquer le background spécifique pour la page des types
+    const appBackground = document.querySelector('.app-background');
+    if (appBackground) {
+      appBackground.classList.add('types-page-background');
+      appBackground.classList.remove('teams-page-background', 'home-page-background');
+    }
+    
     // Get data types from api.js
     const types = await api.getTypes();
     
@@ -27,10 +35,10 @@ const type = {
   
   async displayPokemonByType(typeId) { 
     
-    // Remove types buttons 
-    const buttons = document.querySelectorAll('.block-type');
-    buttons.forEach(button => {
-      button.remove();
+    // Remove only the Pokémon cards, but keep the type buttons
+    const pokemonCards = document.querySelectorAll('.pokemon-card');
+    pokemonCards.forEach(card => {
+      card.remove();
     });
 
     // Get data types by id from api 
