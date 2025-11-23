@@ -1,109 +1,322 @@
-# S14 - Projet Pokédex
+# Pokédex - Redlemon8
 
-Bienvenue sur ce projet Pokédex ! 👋
+Une application web complète de Pokédex permettant de consulter les Pokémon, leurs types et de créer/gérer des équipes personnalisées.
 
-Ta mission de cette semaine est de mettre en place un Pokédex. Pour ceux qui ne connaissent pas, un Pokédex est une encyclopédie virtuelle recensant tous les Pokémons du jeu.
+## 📋 Table des matières
 
-Mais ça ne s'arrête pas là ! Tu devras également mettre en place un système d'équipes de Pokémons. Les utilisateurs pourront créer des équipes, y ajouter des Pokémons, les renommer, les supprimer, etc. 😁
+- [Description](#description)
+- [Technologies utilisées](#technologies-utilisées)
+- [Structure du projet](#structure-du-projet)
+- [Prérequis](#prérequis)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Utilisation](#utilisation)
+- [API Endpoints](#api-endpoints)
+- [Base de données](#base-de-données)
+- [Fonctionnalités](#fonctionnalités)
+- [Auteur](#auteur)
 
-Tu auras aussi quelques bonus à ta disposition si tu souhaites continuer à te challenger. 💪
+## 📖 Description
 
-Le but de cette semaine est de pratiquer :
+Cette application Pokédex est un projet full-stack permettant de :
 
-- La création d'une API REST
-- La consommation de cette API puis un front en Vanilla JS (JavaScript pur quoi)
-- L'affichage dynamique de templates HTML directement depuis JavaScript
-- En GET et en POST !
+- Consulter une base de données de 151 Pokémon de première génération
+- Visualiser les statistiques détaillées de chaque Pokémon
+- Parcourir les différents types de Pokémon
+- Créer et gérer des équipes personnalisées (jusqu'à 6 Pokémon par équipe)
+- Ajouter ou retirer des Pokémon dans les équipes
 
-Maintenant que le contexte est posé, attention à bien lire toutes les consignes ci-dessous et prendre des notes de ton côté si tu l'estimes nécessaire. 📝
+L'application suit une architecture séparée entre le frontend (HTML/CSS/JavaScript) et le backend (API REST avec Express.js).
 
-## Organisation
+## 🛠 Technologies utilisées
 
-On te donne 3 jours pour réaliser ce projet et on t'a mis une [roadmap dans le dossier docs](./docs/roadmap.md) pour t'aider à t'organiser. 🗺️
+### Backend
+- **Node.js** - Environnement d'exécution
+- **Express.js** - Framework web
+- **Sequelize** - ORM pour PostgreSQL
+- **PostgreSQL** - Base de données relationnelle
+- **CORS** - Gestion des requêtes cross-origin
 
-On te conseille en tous cas de te concentrer sur **UNE SEULE** feature à la fois de bout en bout, par exemple afficher tous les pokémons ou afficher tous les types qui est encore plus simple. Toujours dans le but de ce qu'on a mis plus haut ⬆️.
+### Frontend
+- **HTML5** - Structure
+- **CSS3** avec **Bulma** - Framework CSS
+- **JavaScript (ES6+)** - Logique applicative
+- **Vite** - Build tool et serveur de développement
+- **Font Awesome** - Icônes
 
-Au 4ème jour, on te fournira notre correction pour que tu puisses comparer avec ta réalisation et modifier/continuer ton projet si tu le souhaites 🚀
+## 📁 Structure du projet
 
-Tu pourras aussi te concentrer sur des **révisions**, **le parkour O'Todo**, ou bien avancer le **Dossier Professionnel** (_si tu es en DWWM_). En tous cas, contacte-nous si tu as besoin de quoi que ce soit ! 🤗
+```
+S14-Pokedex-Redlemon8/
+├── back/                    # Backend
+│   ├── app.js              # Point d'entrée du serveur
+│   ├── package.json        # Dépendances backend
+│   ├── src/
+│   │   ├── controllers/    # Contrôleurs (logique métier)
+│   │   ├── models/         # Modèles Sequelize
+│   │   ├── middleware/     # Middleware (gestion d'erreurs)
+│   │   ├── migrations/     # Scripts de migration DB
+│   │   └── router.js       # Définition des routes
+│   └── data/
+│       └── sqlVersion/     # Scripts SQL de référence
+│
+├── front/                   # Frontend
+│   ├── index.html          # Page principale
+│   ├── package.json        # Dépendances frontend
+│   └── public/
+│       ├── css/            # Styles CSS
+│       ├── js/             # Scripts JavaScript
+│       └── images/         # Images des Pokémon (151 .webp)
+│
+├── docs/                    # Documentation
+│   ├── endpoints.md        # Documentation des endpoints API
+│   ├── installation.md     # Guide d'installation
+│   ├── roadmap.md          # Feuille de route
+│   └── ...
+│
+└── README.md               # Ce fichier
+```
 
-## Conception (optionnel)
+## ✅ Prérequis
 
-Non obligatoire mais si tu veux travailler [MCD](https://kourou.oclock.io/ressources/fiche-recap/mcd-modele-conceptuel-de-donnees/), [MLD](https://kourou.oclock.io/ressources/fiche-recap/mld/) et [wireframes](https://kourou.oclock.io/ressources/fiche-recap/wireframes-mode-demploi/), on ne peut que t'encourager à le faire. 👍
+Avant de commencer, assurez-vous d'avoir installé :
 
-Cela te sera certainement très utile pour le titre professionnel notamment et de toute façon pour ton métier de développeur. C'est quand même mieux de savoir concevoir une base de données 🤓
+- **Node.js** (version 18 ou supérieure recommandée)
+- **npm** (généralement inclus avec Node.js)
+- **PostgreSQL** (version 12 ou supérieure)
+- **Git** (pour cloner le projet)
 
-### Conseils de conception
+## 🚀 Installation
 
-Pour le [MCD](https://kourou.oclock.io/ressources/fiche-recap/mcd-modele-conceptuel-de-donnees/), fais bien attention au sens des cardinalités, ne fais pas apparaitre les ids, attention à avoir des verbes qui ont du sens et qui ne se répètent pas.
+### 1. Cloner le projet
 
-Pour le MLD, tu as les [règles ici](https://kourou.oclock.io/ressources/fiche-recap/mld/).
+```bash
+git clone <URL_DU_REPO>
+cd S14-Pokedex-Redlemon8
+```
 
-Pour les wireframes tu as [la doc Kourou](https://kourou.oclock.io/ressources/fiche-recap/wireframes-mode-demploi/) à ta disposition, mais en vrac :
+### 2. Installer les dépendances backend
 
-- Pas de design, juste de la structure
-- On légende tout ce qui n'est pas clair
-- On en fait un desktop et un mobile
+```bash
+cd back
+npm install
+```
 
-Pour info, avant le wireframe on peut avoir le zoning, sorte de brouillon ultra simpliste qui permet d'identifier les différents blocs de la page.
+### 3. Installer les dépendances frontend
 
-Et après ... c'est les maquettes ! 🎨
+```bash
+cd ../front
+npm install
+```
 
-## Infos et aides pour le projet
+### 4. Configuration de la base de données PostgreSQL
 
-On t'a mis un dossier `docs` avec quelques fichiers te donnant des informations sur le projet.
+Connectez-vous à PostgreSQL et créez la base de données :
 
-- [roadmap.md](./docs/roadmap.md) qui contient les attendus du projet sous forme de user-stories.
-- [endpoints.md](./docs/endpoints.md) qui contient la liste des routes qui devront être faites dans l'API
-- [installation.md](./docs/installation.md) qui contient une courte série d'instructions pour lancer le projet.
+```bash
+# Se connecter à PostgreSQL (sous Linux/Mac)
+sudo -i -u postgres psql
 
-On a également mis un dossier `integration` contenant des assets et fichiers html pour t'aider à faire le projet. Tu n'es pas obligé de les utiliser si tu as envie de toi même bosser l'intégration, mais ça ne doit pas te prendre deux jours, ce n'est pas du tout le but du projet.
+# Ou directement avec psql
+psql -U postgres
+```
 
-On t'invite à lancer un **Live Server** sur ce projet tout de suite pour voir le rendu de ces fichiers html.
+Dans le shell PostgreSQL, exécutez :
 
-C'est bon ? Si c'est oui c'est que tu peux accéder au premier fichier ici : [components.html](http://localhost:5500/docs/integration/components.html).
+```sql
+-- Créer un utilisateur
+CREATE USER admin_pokedex WITH LOGIN PASSWORD 'pokedex';
 
-- Le fichier [components.html](http://localhost:5500/docs/integration/components.html) est utile si tu le visualises dans le navigateur pour te permettre de copier très facilement le code des composants HTML dont tu as besoin et voir à quoi ils ressemblent. Pour chaque, tu retrouves :
-  - Le nom du composant
-  - L'aperçu du composant
-  - Le code HTML du composant
+-- Créer la base de données
+CREATE DATABASE pokedex WITH OWNER admin_pokedex;
 
-- Le Fichier [samplePage.html](http://localhost:5500/docs/integration/samplePage.html) te permet de voir aussi dans le navigateur à quoi peut ressembler une page en utilisant les composants HTML. Tu peux aussi aller voir le code du fichier ici : [samplePage.html](./docs/integration/samplePage.html).
+-- Quitter psql
+\q
+```
 
-- Le dernier fichier c'est [starterPage.html](./docs/integration/starterPage.html) qui est le code base pour commencer à intégrer le projet. On te conseille de créer ton index.html de ton front à partir de ce fichier. 😉
+## ⚙️ Configuration
 
-## Structure du projet
+### Configuration du backend
 
-### Back
+1. Créez un fichier `.env` dans le dossier `back/` :
 
-On t'a déjà créé un dossier back. Tu y trouveras :
+```bash
+cd back
+cp .env.example .env  # Si un fichier exemple existe
+# Sinon, créez le fichier .env manuellement
+```
 
-- [.env.example](./back/.env.example) : nos variables d'environnement.
-- [package.json](./back/package.json) : contient nos dependances & les scripts (que vous devrez faire en vous inspirant des projets précédents.)
+2. Configurez les variables d'environnement dans `.env` :
 
-#### BDD
+```env
+# Base de données
+PG_URL=postgresql://admin_pokedex:pokedex@localhost:5432/pokedex
 
-Concernant la base de donnée, voici ce que tu pourrais avoir en version SQL, **mais on te demande de le la créer directement via les Models Sequelize et la synchronisation avec `sequelize.sync()`** :
+# Serveur
+PORT=3000
+BASE_URL=http://localhost
+```
 
-- [create_tables.sql](./back/data/sqlVersion/create_tables.sql) : le fichier de création des tables.
-- [seeding_tables.sql](./back/data/sqlVersion/seeding_tables.sql) : le fichier de seeding des tables.
+**Note** : Ajustez ces valeurs selon votre configuration PostgreSQL locale.
 
-> _Tips: pour la partie seeding à adapter, n'oublie pas que tu as tes amis les IAs pour t'aider à générer le script. 🤖_
+### Initialisation de la base de données
 
-Bon, si tu bloques avec la génération via Sequelize, rien ne t'empêche d'utiliser ces deux scripts quand même et de bien faire la liaison avec tes Models.
+Une fois la configuration terminée, initialisez les tables et les données :
 
-### Front
+```bash
+cd back
+npm run db:reset
+```
 
-Tu as le droit à un joli `index.html` vide et c'est tout ! 😅 Tu devras y mettre ton code HTML, CSS et JS, à récupérer depuis le dossier `integration` 🎨
+Cette commande va :
+- Créer les tables dans la base de données
+- Insérer les données initiales (151 Pokémon, types, etc.)
 
-## Besoin d'aide technique ?
+## 🎯 Utilisation
 
-Je n'ai qu'une seule chose à te dire : **ISSUE** ! 🚨
+### Démarrage du backend
 
-Je ne te montre pas le chemin, depuis le temps .. tu le connais 😏
+Dans un terminal :
 
-## Le mot de la fin
+```bash
+cd back
+npm run dev
+```
 
-Voilà, le crois que tu as tout ce qu'il faut pour te lancer, amuse-toi bien et n'oublie pas de faire des commits et push régulièrement, sinon tu risques de faire comme le concepteur de ce challenge qui a la facheuse tendance de ne pas pusher assez souvent ou alors au milieu d'une feature, et c'est dommage parce que la dernière fois, il a oublié de commiter les numéros du loto de la semaine prochaine justement, qui sont
+Le serveur backend sera accessible sur `http://localhost:3000` (ou le port configuré dans votre `.env`).
 
-_[TODO finir ce readme]_
+### Démarrage du frontend
+
+Dans un autre terminal :
+
+```bash
+cd front
+npm run dev
+```
+
+L'application frontend sera accessible sur `http://localhost:5173` (port par défaut de Vite).
+
+**Ou** utilisez un serveur de développement comme Live Server si vous préférez.
+
+## 📡 API Endpoints
+
+### Pokémons
+
+| Méthode | Endpoint              | Description                    |
+|---------|-----------------------|--------------------------------|
+| GET     | `/pokemons`           | Liste tous les Pokémon         |
+| GET     | `/pokemons/:id`       | Détails d'un Pokémon spécifique|
+
+### Types
+
+| Méthode | Endpoint              | Description                    |
+|---------|-----------------------|--------------------------------|
+| GET     | `/types`              | Liste tous les types           |
+| GET     | `/types/:id`          | Liste les Pokémon d'un type    |
+
+### Équipes
+
+| Méthode | Endpoint                         | Description                    |
+|---------|----------------------------------|--------------------------------|
+| GET     | `/teams`                         | Liste toutes les équipes       |
+| GET     | `/teams/:id`                     | Détails d'une équipe           |
+| POST    | `/teams`                         | Crée une nouvelle équipe       |
+| PATCH   | `/teams/:id`                     | Modifie une équipe             |
+| DELETE  | `/teams/:id`                     | Supprime une équipe            |
+| POST    | `/teams/:id/pokemons`            | Ajoute un Pokémon à une équipe |
+| DELETE  | `/teams/:id/pokemons`            | Retire un Pokémon d'une équipe |
+
+### Règles de gestion
+
+- **Limite d'équipe** : Maximum 6 Pokémon par équipe
+- **Unicité** : Un même Pokémon ne peut pas être ajouté deux fois dans la même équipe
+
+## 🗄️ Base de données
+
+### Schéma de la base de données
+
+Le projet utilise une base de données PostgreSQL avec les tables suivantes :
+
+- **pokemon** : Stocke les informations des Pokémon (nom, statistiques)
+- **type** : Liste des types de Pokémon avec leurs couleurs
+- **team** : Équipes créées par les utilisateurs
+- **pokemon_type** : Table de liaison entre Pokémon et Types (many-to-many)
+- **team_pokemon** : Table de liaison entre Équipes et Pokémon (many-to-many)
+
+### Relations
+
+- Un Pokémon peut avoir plusieurs Types
+- Un Type peut être associé à plusieurs Pokémon
+- Une Équipe peut contenir plusieurs Pokémon (max 6)
+- Un Pokémon peut appartenir à plusieurs Équipes
+
+## ✨ Fonctionnalités
+
+### Version actuelle
+
+- ✅ Consultation de la liste complète des 151 Pokémon
+- ✅ Affichage des détails d'un Pokémon (statistiques, types)
+- ✅ Visualisation des types de Pokémon
+- ✅ Filtrage des Pokémon par type
+- ✅ Création d'équipes personnalisées
+- ✅ Modification et suppression d'équipes
+- ✅ Ajout/retrait de Pokémon dans les équipes
+- ✅ Interface responsive avec Bulma CSS
+- ✅ Modales pour les détails et la gestion
+
+### Fonctionnalités prévues (voir `docs/roadmap.md`)
+
+- 🔄 Système de votes pour les Pokémon
+- 🔄 Recherche de Pokémon par nom
+- 🔄 Comparaison de deux Pokémon
+- 🔄 Authentification utilisateur
+- 🔄 Leaderboard des Pokémon les plus populaires
+- 🔄 Infinite scroll pour la liste des Pokémon
+
+## 🧪 Scripts disponibles
+
+### Backend
+
+```bash
+npm run dev        # Lance le serveur en mode développement (watch)
+npm run db:create  # Crée les tables de la base de données
+npm run db:seed    # Insère les données initiales
+npm run db:reset   # Réinitialise complètement la base de données
+```
+
+### Frontend
+
+```bash
+npm run dev        # Lance le serveur de développement Vite
+```
+
+## 📚 Documentation supplémentaire
+
+Pour plus de détails, consultez :
+
+- [Documentation des endpoints](docs/endpoints.md)
+- [Guide d'installation détaillé](docs/installation.md)
+- [Feuille de route](docs/roadmap.md)
+
+## 🤝 Contribution
+
+Ce projet est un projet d'apprentissage. Pour contribuer :
+
+1. Forkez le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
+3. Committez vos changements (`git commit -m 'Add some AmazingFeature'`)
+4. Pushez vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une Pull Request
+
+## 📝 Licence
+
+Ce projet est destiné à un usage éducatif.
+
+## 👤 Auteur
+
+**Redlemon8**
+
+---
+
+Bon développement ! 🍀
+
