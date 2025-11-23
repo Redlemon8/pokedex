@@ -55,7 +55,7 @@ const addToDom = {
     const clone = template.content.cloneNode(true);
     
     // Mettre à jour l'image et le nom
-    clone.querySelector(".pokemon-image").src = "images/" + pokemons.id + ".webp";
+    clone.querySelector(".pokemon-image").src = "/images/" + pokemons.id + ".webp";
     clone.querySelector(".pokemon-name").textContent = pokemons.name;
     
     // Gérer les types du Pokémon
@@ -177,7 +177,7 @@ const addToDom = {
         pokemonsWithTypes.forEach(pokemon => {
           const img = document.createElement('img');
           img.classList.add('pokemon-team-image', 'is-rounded', 'mx-2', 'is-16x16');
-          img.src = "./images/" + pokemon.id + ".webp";
+          img.src = "/images/" + pokemon.id + ".webp";
           
           // Appliquer la couleur du type principal du Pokémon (moins opaque)
           if (pokemon.types && pokemon.types.length > 0) {
@@ -202,7 +202,7 @@ const addToDom = {
         teams.pokemons.forEach(pokemon => {
           const img = document.createElement('img');
           img.classList.add('pokemon-team-image', 'is-rounded', 'mx-2', 'is-16x16');
-          img.src = "./images/" + pokemon.id + ".webp";
+          img.src = "/images/" + pokemon.id + ".webp";
           img.addEventListener('click', () => modals.handleModal(pokemon.id));
           figure.append(img);
         });

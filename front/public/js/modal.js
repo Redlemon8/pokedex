@@ -52,7 +52,7 @@ const modals = {
       return;
     }
     document.querySelector('.pkm_name').textContent = pokemonDetails.name;
-    document.querySelector('.pkm_img_modal').src = "images/" + pokemonDetails.id + ".webp";
+    document.querySelector('.pkm_img_modal').src = "/images/" + pokemonDetails.id + ".webp";
     document.querySelector('.pokemon-hp').textContent = pokemonDetails.hp;
     document.querySelector('.pokemon-atk').textContent = pokemonDetails.atk;
     document.querySelector('.pokemon-def').textContent = pokemonDetails.def;
@@ -430,7 +430,7 @@ const modals = {
         <div class="pokemon-card-container">
           <div class="pokemon-card-inner" style="cursor: pointer;">
             <div class="pokemon-image-container">
-              <img class="pokemon-image" src="images/${pokemon.id}.webp" />
+              <img class="pokemon-image" src="/images/${pokemon.id}.webp" />
             </div>
             <div class="pokemon-info">
               <h3 class="pokemon-name">${pokemon.name}</h3>
